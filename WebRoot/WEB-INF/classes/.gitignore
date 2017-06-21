@@ -1,0 +1,10 @@
+/META-INF/
+/base/
+/config/
+/entity/
+/entitymapping/
+/hibernate.cfg.xml
+/log4j.properties
+/service/
+/servlet/
+/test/
