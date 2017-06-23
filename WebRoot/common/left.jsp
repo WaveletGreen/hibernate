@@ -17,7 +17,7 @@
   <li>用户管理
     <ul class="subnav">
       <li><a href="jsp/admin/userAdd.jsp">添加用户</a></li>
-      <li><a href="jsp/admin/doUserList.jsp">查询用户</a></li>
+      <li><a href="servlet/getUserListServlet">查询用户</a></li>
     </ul>
   </li>
 </ul>

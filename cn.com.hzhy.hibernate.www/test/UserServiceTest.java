@@ -1,10 +1,14 @@
 package test;
 
 import java.util.Date;
+import java.util.List;
+
+import javax.security.auth.login.LoginContext;
 
 import entity.Employee;
 import service.UserService;
 import service.impl.UserServiceImpl;
+import util.UserQueryCondition;
 
 public class UserServiceTest {
 
@@ -15,13 +19,47 @@ public class UserServiceTest {
 		Employee employee = new Employee();
 		employee.setSex(1);
 		employee.setBirthday(new Date());
-		employee.setEmpName("ÕÅÈı");
+		employee.setEmpName("ï¿½ï¿½ï¿½ï¿½");
 		employee.setPassword("123456");
 		employee.setRoleId(1);
 		employee.setStatus(1);
-		System.out.println("²åÈë³É¹¦£¬²åÈëIDÎª:" + addUser(employee));
-		deleteUser(employee);
-		System.out.println(getByID(21).getEmpName());
+		// System.out.println("ï¿½ï¿½ï¿½ï¿½É¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½IDÎª:" + addUser(employee));
+		// deleteUser(employee);
+		// System.out.println(getByID(21).getEmpName());
+		Employee employee2 = Login(5, "1223456");
+		if (employee2 == null) {
+			System.out.println("ç”¨æˆ·æˆ–å¯†ç é”™è¯¯");
+		} else
+			System.out.println(employee2.getEmpName());
+		UserQueryCondition condition=new UserQueryCondition();
+		condition.setUserName("å¼ ");
+		List<Employee> list=getAllUsersList(null);
+		for (Employee employee3 : list) {
+			System.out.println(employee3.getEmpName());
+		}
+		System.out.println("-----------------------");
+		List<Employee> list2=getPageUserList(condition);
+		for (Employee employee3 : list2) {
+			System.out.println(employee3.getEmpName()+"---"+employee3.getEmpId());
+		}
+	}
+
+
+	private static List<Employee> getPageUserList(UserQueryCondition condition) {
+		UserService service=new UserServiceImpl();
+		return service.getByPage(5,2,condition);
+	}
+
+
+	private static List<Employee> getAllUsersList(UserQueryCondition condition) {
+		UserService service=new UserServiceImpl();
+		return service.getByPage(condition);
+	}
+
+
+	private static Employee Login(int ID, String password) {
+		UserService service = new UserServiceImpl();
+		return service.login(ID, password);
 	}
 
 	private static Employee getByID(int i) {
@@ -33,10 +71,10 @@ public class UserServiceTest {
 		UserService service = new UserServiceImpl();
 		int result = service.deletUser(employee);
 		if (result > 0) {
-			System.out.println("É¾³ıIDÎª" + employee.getEmpId() + employee.getEmpName() + "³É¹¦");
+			System.out.println("É¾ï¿½ï¿½IDÎª" + employee.getEmpId() + employee.getEmpName() + "ï¿½É¹ï¿½");
 			return;
 		}
-		System.out.println("É¾³ıIDÎª" + employee.getEmpId() + employee.getEmpName() + "Ê§°Ü");
+		System.out.println("É¾ï¿½ï¿½IDÎª" + employee.getEmpId() + employee.getEmpName() + "Ê§ï¿½ï¿½");
 	}
 
 	private static int addUser(Employee employee) {

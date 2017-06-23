@@ -39,7 +39,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
     <h3>杭州华育——用户登录</h3>
-  <form name="form1" method="post" action="servlet/doLoginServlet">
+  <form name="form1" method="post" action="servlet/doLiginServlet">
     <table width="60%" border="1" cellspacing="0" cellpadding="10">
       <tr>
         <td>用户名：</td>

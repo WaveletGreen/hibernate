@@ -5,9 +5,27 @@
     <servlet-name>DoRegisterServlet</servlet-name>
     <servlet-class>servlet.DoRegisterServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>doLoginServlet</servlet-name>
+    <servlet-class>servlet.DoLoginServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>getUserListServlet</servlet-name>
+    <servlet-class>servlet.GetUserListServlet</servlet-class>
+  </servlet>
+
+
 
   <servlet-mapping>
     <servlet-name>DoRegisterServlet</servlet-name>
     <url-pattern>/servlet/doRegisterServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>doLoginServlet</servlet-name>
+    <url-pattern>/servlet/doLiginServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>getUserListServlet</servlet-name>
+    <url-pattern>/servlet/getUserListServlet</url-pattern>
   </servlet-mapping>
 </web-app>

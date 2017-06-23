@@ -72,4 +72,6 @@ public interface UserService {
 	public List<Employee> getByPage(UserQueryCondition condition);
 
 	public Employee login(int ID, String password);
+	
+	
 }
