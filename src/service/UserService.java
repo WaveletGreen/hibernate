@@ -1,50 +1,75 @@
 package service;
 
+import java.util.List;
+
 import entity.Employee;
+import util.UserQueryCondition;
 
 public interface UserService {
 	/**
-	 * Ôö¼ÓÔ±¹¤
+	 * æ·»åŠ ä¸€åå‘˜å·¥
 	 * 
 	 * @param em
-	 *            ĞèÒªÔö¼ÓµÄÔ±¹¤ÊµÌåÀà
-	 * @return Ôö¼Ó³É¹¦Ôò·µ»ØÔ±¹¤µÄID£¨ÓÉĞòÁĞÉú³É£©£¬·ñÔò·µ»Ø0£¬Ôö¼ÓÊ§°Ü
+	 *            éœ€è¦æ·»åŠ çš„å‘˜å·¥å®ä½“ç±»
+	 * @return å¦‚æœæ·»åŠ æˆåŠŸåˆ™è¿”å›å‘˜å·¥IDï¼Œå¦åˆ™è¿”å›0
 	 */
 	public int addUser(Employee em);
 
 	/**
-	 * É¾³ıÒ»¸öÔ±¹¤£¬Âß¼­É¾³ı£¬½«Ô±¹¤status¸üĞÂÎª0¼´¿É£¬ĞèÒªÓÃµ½updateUser·½·¨
+	 * é€»è¾‘åˆ é™¤å‘˜å·¥ï¼Œå³æ›´æ–°å‘˜å·¥çŠ¶æ€è®¾ä¸º0
 	 * 
 	 * @param em
-	 * @return
+	 * @return é€»è¾‘åˆ é™¤æˆåŠŸåˆ™è¿”å›1ï¼Œåˆ é™¤å¤±è´¥åˆ™è¿”å›-1
 	 */
 	public int deletUser(Employee em);
 
 	/**
-	 * ÕæÕı½«Employee¶ÔÏó´ÓÊı¾İ¿âÖĞÉ¾³ı
+	 * ç§»é™¤å‘˜å·¥ï¼Œè¿™æ¬¡æ“ä½œæ˜¯å°†å‘˜å·¥ä»ç‰©ç†å­˜å‚¨ä»‹è´¨ä¸­çœŸæ­£åˆ é™¤å‘˜å·¥ä¿¡æ¯
 	 * 
 	 * @param em
-	 *            ĞèÒªÎïÀíÉ¾³ıµÄ¶ÔÏó
+	 *            éœ€è¦åˆ é™¤çš„å‘˜å·¥
 	 * @return
 	 */
 	public int removeUser(Employee em);
 
 	/**
-	 * ¸üĞÂÔ±¹¤ĞÅÏ¢
+	 * æ›´æ–°å‘˜å·¥ä¿¡æ¯
 	 * 
 	 * @param em
-	 *            ĞèÒª¸üĞÂµÄÔ±¹¤ÊµÌåÀà
+	 *            éœ€è¦æ›´æ–°ä¿¡æ¯çš„å‘˜å·¥
 	 * @return
 	 */
 
 	public int updateUser(Employee em);
 
 	/**
-	 * ¸ù¾İÔ±¹¤µÄID²éÑ¯»ñµÃÔ±¹¤µÄÊµÌåÀàĞÅÏ¢
+	 * æ ¹æ®IDè·å–å‘˜å·¥
 	 * 
 	 * @param userID
 	 * @return
 	 */
 	public Employee getById(int empID);
 
+	/**
+	 * åˆ†é¡µæŸ¥è¯¢æŒ‡å®šè®°å½•èŒƒå›´å†…çš„å‘˜å·¥è®°å½•
+	 * 
+	 * @param pageSize
+	 *            æ¯ä¸€é¡µæœ€å¤§è®°å½•æ•°
+	 * @param pageIndex
+	 *            å¼€å§‹æ˜¾ç¤ºçš„è®°å½•æ•°
+	 * @param condition
+	 *            æŸ¥è¯¢æ¡ä»¶
+	 * @return
+	 */
+	public List<Employee> getByPage(int pageSize, int pageIndex, UserQueryCondition condition);
+
+	/**
+	 * æ ¹æ®æŸ¥è¯¢æ¡ä»¶è·å–æ‰€æœ‰ç¬¦åˆæ¡ä»¶çš„å‘˜å·¥è®°å½•
+	 * 
+	 * @param condition
+	 * @return
+	 */
+	public List<Employee> getByPage(UserQueryCondition condition);
+
+	public Employee login(int ID, String password);
 }

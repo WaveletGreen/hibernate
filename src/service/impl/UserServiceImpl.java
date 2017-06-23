@@ -1,13 +1,17 @@
 package service.impl;
 
+import java.util.List;
+
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import base.Base;
-
 import entity.Employee;
 import service.UserService;
+import util.StringUtil;
+import util.UserQueryCondition;
 
 public class UserServiceImpl implements UserService {
 
@@ -16,19 +20,12 @@ public class UserServiceImpl implements UserService {
 		Session session = null;
 		Transaction tx = null;
 		int result = 0;
-		// 1.解析配置文件
 		try {
 
-			// 2.创建SessionFactory
-
-			// 3.创建session
 			session = Base.getOpenSession();
-			// 4.建立数据库连接
 			tx = session.beginTransaction();
 
-			// 5.执行事务
 			result = (Integer) session.save(em);
-			// 6.提交事务
 			tx.commit();
 		} catch (HibernateException e) {
 			if (tx != null && tx.isActive()) {
@@ -36,7 +33,6 @@ public class UserServiceImpl implements UserService {
 			}
 			e.printStackTrace();
 		} finally {
-			// 7.释放资源
 			Base.closeSession();
 		}
 		return result;
@@ -47,20 +43,12 @@ public class UserServiceImpl implements UserService {
 		Session session = null;
 		Transaction tx = null;
 		int result = 1;
-		// 1.解析配置文件
 		try {
 
-			// 2.创建SessionFactory
-
-			// 3.创建session
 			session = Base.getOpenSession();
-			// 4.建立数据库连接
 			tx = session.beginTransaction();
-			// 更新状态，将用户状态设为-1表示逻辑删除
 			em.setStatus(-1);
-			// 5.执行事务
 			session.update(em);
-			// 6.提交事务
 			tx.commit();
 		} catch (HibernateException e) {
 			if (tx != null && tx.isActive()) {
@@ -70,7 +58,6 @@ public class UserServiceImpl implements UserService {
 			result = -1;
 			return result;
 		} finally {
-			// 7.释放资源
 			Base.closeSession();
 		}
 		return result;
@@ -81,19 +68,11 @@ public class UserServiceImpl implements UserService {
 		Session session = null;
 		Transaction tx = null;
 		int result = 1;
-		// 1.解析配置文件
 		try {
 
-			// 2.创建SessionFactory
-
-			// 3.创建session
 			session = Base.getOpenSession();
-			// 4.建立数据库连接
 			tx = session.beginTransaction();
-			// 更新状态，将用户状态设为-1表示逻辑删除
-			// 5.执行事务
 			session.update(em);
-			// 6.提交事务
 			tx.commit();
 		} catch (HibernateException e) {
 			if (tx != null && tx.isActive()) {
@@ -103,7 +82,6 @@ public class UserServiceImpl implements UserService {
 			result = -1;
 			return result;
 		} finally {
-			// 7.释放资源
 			Base.closeSession();
 		}
 		return result;
@@ -113,24 +91,15 @@ public class UserServiceImpl implements UserService {
 	public Employee getById(int empID) {
 		Session session = null;
 		Employee result = null;
-		// 1.解析配置文件
 		try {
 
-			// 2.创建SessionFactory
-
-			// 3.创建session
 			session = Base.getOpenSession();
-			// 4.建立数据库连接
 			session.beginTransaction();
-			// 更新状态，将用户状态设为-1表示逻辑删除
-			// 5.执行事务
 			result = (Employee) session.get(entity.Employee.class, empID);
-			// 6.提交事务
 		} catch (HibernateException e) {
-			System.out.println("没有ID为" + empID + "的员工");
+			System.out.println("没锟斤拷ID为" + empID + "锟斤拷员锟斤拷");
 			e.printStackTrace();
 		} finally {
-			// 7.释放资源
 			Base.closeSession();
 		}
 		return result;
@@ -141,19 +110,12 @@ public class UserServiceImpl implements UserService {
 		Session session = null;
 		Transaction tx = null;
 		int result = 1;
-		// 1.解析配置文件
 		try {
 
-			// 2.创建SessionFactory
-
-			// 3.创建session
 			session = Base.getOpenSession();
-			// 4.建立数据库连接
 			tx = session.beginTransaction();
 
-			// 5.执行事务
 			session.delete(em);
-			// 6.提交事务
 			tx.commit();
 		} catch (HibernateException e) {
 			if (tx != null && tx.isActive()) {
@@ -163,10 +125,70 @@ public class UserServiceImpl implements UserService {
 			result = -1;
 			return result;
 		} finally {
-			// 7.释放资源
 			Base.closeSession();
 		}
 		return result;
 	}
 
+	public List<Employee> getByPage(int pageSize, int pageIndex, UserQueryCondition condition) {
+		List<Employee> lists = null;
+		StringBuilder hql = new StringBuilder().append("from Employee where 1=1 ");
+		if (condition == null) {
+			System.out.println("--------------娴嬭瘯锛歝ondition涓簄ull");
+			return null;
+		}
+		if (!StringUtil.isNullOrEmpty(condition.getUserName())) {
+			hql.append("and emm_name like :userName ");
+		}
+		if (!StringUtil.isNullOrEmpty(condition.getStart())) {
+			hql.append("and birthday>=:Start ");
+		}
+
+		if (!StringUtil.isNullOrEmpty(condition.getEnd())) {
+			hql.append("and birthday<:End ");
+		}
+		if (condition.getRoleId() > 0) {
+			hql.append("and role_id=:roleId ");
+		}
+		if (condition.getStatus() != -1) {
+			hql.append("and status=:status");
+		}
+
+		try {
+			Session session = Base.autoSession();
+			Query query = session.createQuery(hql.toString());
+			if (pageSize != -1 && pageIndex != -1) {
+				query.setFirstResult(pageSize * (pageIndex - 1));
+				query.setMaxResults(pageSize);
+			}
+			lists = query.list();
+		} catch (HibernateException e) {
+			e.printStackTrace();
+		} finally {
+			Base.closeSession();
+		}
+		return lists;
+	}
+
+	@Override
+	public List<Employee> getByPage(UserQueryCondition condition) {
+
+		return getByPage(-1, -1, condition);
+	}
+
+	@Override
+	public Employee login(int ID, String password) {
+		Session session = Base.getOpenSession();
+		session.beginTransaction();
+		List<Employee> lists = null;
+		String hql = "form Employee where emp_id=:ID and password=:password";
+		Query query = session.createQuery(hql);
+		query.setParameter(ID, ID);
+		query.setParameter(password, password);
+		lists = query.list();
+		if (lists == null) {
+			return null;
+		}
+		return lists.get(0);
+	}
 }
