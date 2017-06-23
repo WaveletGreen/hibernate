@@ -1,0 +1,12 @@
+body,h1,h2,h3,ul,li,p{margin:0px; padding:0px;}
+#header{width:980px;height:130px;background:#999;margin:0px auto;}
+  #header .logo{width:250px; height:100px; float:left; border:0px solid red;}
+  #header h3{height:100px;font: bold 36px/100px 宋体; }
+  #header .logo_info{height:30px; line-height:30px; padding-left:10px; background:#0CC;}
+#main{width:980px;margin:0px auto;}
+  #sidebar{width:200px;height:480px;padding-top:20px;float:left;background:#CC0;}
+    #sidebar .nav{padding-left: 30px;}
+      #sidebar .nav .subnav{padding-left: 30px;}
+  #content{width:780px;height:500px;float:left;background:#CCC};
+  #clear{clear:both;}
+#footer{width:980px;height:80px;background:#999;margin:0px auto; text-align:center; clear:both;}
