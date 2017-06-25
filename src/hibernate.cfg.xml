@@ -29,11 +29,13 @@
 		<property name="show_sql">true</property>
 		<property name="format_sql">true</property>
 		<!-- Drop and re-create the database schema on startup -->
-		<!-- <property name="hbm2ddl.auto">create</property> -->
+		<property name="hbm2ddl.auto">update</property>
 
 		<mapping
 			resource="config/User.hbm.xml" />
-			
+		<mapping
+			resource="config/Province.hbm.xml" /><mapping
+			resource="config/City.hbm.xml" />	
 		<!-- <mapping resource="org/hibernate/tutorial/domain/Person.hbm.xml" /> -->
 
 	</session-factory>

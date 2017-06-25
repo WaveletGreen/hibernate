@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Demonstrates how to control the optimistic locking behavior of a collection 
+	(do changes to the collection result in a version increment on the owning 
+	instance) -->
+<hibernate-mapping>
+	<class name="entity.ch04.City" schema="news">
+		<id column="cityID" name="cityID" type="java.lang.Integer">
+			<generator class="assigned">
+			</generator>
+		</id>
+		<many-to-one name="province" cascade="all"
+			class="entity.ch04.Province"> </many-to-one>
+		<property name="cityName" type="string"></property>
+	</class>
+</hibernate-mapping>

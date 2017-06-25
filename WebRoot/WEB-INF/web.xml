@@ -13,6 +13,11 @@
     <servlet-name>getUserListServlet</servlet-name>
     <servlet-class>servlet.GetUserListServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>getCities</servlet-name>
+    <servlet-class>servlet.GetCities</servlet-class>
+  </servlet>
+
 
 
 
@@ -27,5 +32,9 @@
   <servlet-mapping>
     <servlet-name>getUserListServlet</servlet-name>
     <url-pattern>/servlet/getUserListServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>getCities</servlet-name>
+    <url-pattern>/servlet/getCities</url-pattern>
   </servlet-mapping>
 </web-app>
