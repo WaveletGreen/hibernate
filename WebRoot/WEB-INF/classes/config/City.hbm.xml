@@ -11,9 +11,9 @@
 			<generator class="assigned">
 			</generator>
 		</id>
-		<many-to-one name="province" cascade="all"
+		<many-to-one name="province" cascade="all"  
 			class="entity.ch04.Province">
 		</many-to-one>
-		<property name="cityName" type="string"></property>
+		<property name="cityName" type="java.lang.String"></property>
 	</class>
 </hibernate-mapping>

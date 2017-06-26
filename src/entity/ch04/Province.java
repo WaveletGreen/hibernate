@@ -23,6 +23,8 @@ public class Province implements Serializable {
 		this.cities = cities;
 	}
 
+	
+
 	public Integer getProID() {
 		return proID;
 	}

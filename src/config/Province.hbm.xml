@@ -8,11 +8,11 @@
 	<class name="entity.ch04.Province" schema="news">
 		<cache usage="read-write" />
 
-		<id column="proID" name="proID" type="integer">
+		<id column="proID" name="proID" type="java.lang.Integer">
 			<generator class="assigned">
 			</generator>
 		</id>
-		<property name="proName" type="string"></property>
+		<property name="proName" type="java.lang.String"></property>
 		<set name="cities" cascade="all">
 			<key column="province"></key>
 			<one-to-many class="entity.ch04.City" />

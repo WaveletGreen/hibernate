@@ -17,8 +17,8 @@ public class CityCasadeTest {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		 p1();
-//		p2();
+//		 p1();
+		p2();
 		// delet();
 	}
 
@@ -26,8 +26,8 @@ public class CityCasadeTest {
 		// TdODO Auto-generated method stub
 		Session session = Base.autoSession();
 		Transaction tx = session.beginTransaction();
-		Query query = session.createQuery("from City where province=:province");
-		query.setParameter("province", 1);
+		Query query = session.createQuery("from City c where c.province=:province");
+		query.setInteger("province", 1);
 		List<City> cities = query.list();
 		for (City city : cities) {
 			System.out.println(city.getProvince().getProName());
