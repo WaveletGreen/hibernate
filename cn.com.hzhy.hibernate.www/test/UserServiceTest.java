@@ -3,13 +3,12 @@ package test;
 import java.util.Date;
 import java.util.List;
 
-import javax.security.auth.login.LoginContext;
 
 import entity.Employee;
 import service.UserService;
 import service.impl.UserServiceImpl;
 import util.UserQueryCondition;
-
+@SuppressWarnings({ "unused" })
 public class UserServiceTest {
 
 	/**
