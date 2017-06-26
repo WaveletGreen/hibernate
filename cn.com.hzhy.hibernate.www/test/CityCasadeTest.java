@@ -10,6 +10,7 @@ import base.Base;
 
 import entity.ch04.City;
 import entity.ch04.Province;
+
 @SuppressWarnings({ "unused", "unchecked" })
 public class CityCasadeTest {
 
@@ -17,7 +18,7 @@ public class CityCasadeTest {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-//		 p1();
+		// p1();
 		p2();
 		// delet();
 	}
@@ -26,7 +27,10 @@ public class CityCasadeTest {
 		// TdODO Auto-generated method stub
 		Session session = Base.autoSession();
 		Transaction tx = session.beginTransaction();
-		Query query = session.createQuery("from City c where c.province=:province");
+		Query query = session
+				.createQuery("from City c where c.province=:province");
+		// 这里setParament()并不是通用的，要根据类型使用set方法
+
 		query.setInteger("province", 1);
 		List<City> cities = query.list();
 		for (City city : cities) {
