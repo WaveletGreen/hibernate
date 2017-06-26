@@ -26,5 +26,7 @@
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/Administrator/git/hibernate/WebRoot/WEB-INF/lib/hibernate3.3.2/commons-logging-1.0.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Administrator/git/hibernate/WebRoot/WEB-INF/lib/hibernate3.3.2/ehcache-1.2.3.jar"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>

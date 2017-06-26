@@ -6,18 +6,18 @@ import org.hibernate.cfg.Configuration;
 
 public class Base {
 	/**
-	 * 解析基本配置信息
+	 * 锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷息
 	 */
 	private static Configuration config = null;
 	/**
-	 * 是一个全局变量
+	 * 锟斤拷一锟斤拷全锟街憋拷锟斤拷
 	 */
 	private static SessionFactory factory = null;
 
 	private static ThreadLocal<Session> threadLocal = new ThreadLocal<Session>();
 
 	/**
-	 * 创建Configuration单例
+	 * 锟斤拷锟斤拷Configuration锟斤拷锟斤拷
 	 * 
 	 * @return
 	 */
@@ -33,7 +33,7 @@ public class Base {
 	}
 
 	/**
-	 * 根据配置文件的完整限定名称生辰配置信息
+	 * 锟斤拷锟斤拷锟斤拷锟斤拷募锟斤拷锟斤拷锟斤拷锟斤拷薅锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷息
 	 * 
 	 * @param qualifiedName
 	 * @return
@@ -43,7 +43,7 @@ public class Base {
 	}
 
 	/**
-	 * 创建SessionFactory，全局变量
+	 * 锟斤拷锟斤拷SessionFactory锟斤拷全锟街憋拷锟斤拷
 	 * 
 	 * @return
 	 */
@@ -60,8 +60,8 @@ public class Base {
 	}
 
 	/**
-	 * 根据特定的配置信息生成对应的SessionFactory，如果是默认的hibernate.cfg.xml，则可使用getFactory()
-	 * 保证SessionFactory全局只有一个
+	 * 锟斤拷锟斤拷囟锟斤拷锟斤拷锟斤拷锟斤拷锟较拷锟缴讹拷应锟斤拷SessionFactory锟斤拷锟斤拷锟斤拷锟侥拷系锟絟ibernate.cfg.xml锟斤拷锟斤拷锟绞癸拷锟絞etFactory()
+	 * 锟斤拷证SessionFactory全锟斤拷只锟斤拷一锟斤拷
 	 * 
 	 * @param config
 	 * @return
@@ -71,7 +71,7 @@ public class Base {
 	}
 
 	/**
-	 * 获取OpenSession
+	 * 锟斤拷取OpenSession
 	 * 
 	 * @return
 	 */
@@ -85,7 +85,7 @@ public class Base {
 	}
 
 	/**
-	 * 关闭session
+	 * 锟截憋拷session
 	 */
 	public static void closeSession() {
 		Session session = threadLocal.get();
@@ -99,7 +99,7 @@ public class Base {
 	public static Session autoSession() {
 		getConfig();
 		getFactory();
-		return getOpenSession();
 
+		return getOpenSession();
 	}
 }
