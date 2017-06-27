@@ -18,7 +18,7 @@ public class CityCasadeTest {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// p1();
+		 p1();
 		p2();
 		// delet();
 	}

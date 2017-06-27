@@ -9,7 +9,7 @@
 
 		<!-- Database connection settings -->
 		<property name="connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
-		<property name="connection.url">jdbc:oracle:thin:@localhost:1521:HUAYU</property>
+		<property name="connection.url">jdbc:oracle:thin:@localhost:1521:ORCL</property>
 		<property name="connection.username">news</property>
 		<property name="connection.password">news</property>
 
