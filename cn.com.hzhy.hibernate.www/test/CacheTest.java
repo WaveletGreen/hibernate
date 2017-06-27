@@ -20,24 +20,24 @@ public class CacheTest {
 	/**
 	 * @param args
 	 */
-	public static void main(String[] args) {
-		// sessionCache();
-		// sessionFactoryCache();
-		// queryCache();
-
-		/*
-		 * hibernate不能像JDBC那样子获得查询结果集吗？如果查询的结果是返回多行多列该怎么处理呢？
-		 * list返回的是单列多行结果集，uniqueResult返回多列单行结果集，怎么将二者结合起来用呢？ 能否用一个类来承接这个结果集呢？
-		 */
-		// simpleTest();
-		usingCommonQuery();
-		usingwithAggregationOperation();
-	}
+	// public static void main(String[] args) {
+	// // sessionCache();
+	// // sessionFactoryCache();
+	// // queryCache();
+	//
+	// /*
+	// * hibernate不能像JDBC那样子获得查询结果集吗？如果查询的结果是返回多行多列该怎么处理呢？
+	// * list返回的是单列多行结果集，uniqueResult返回多列单行结果集，怎么将二者结合起来用呢？ 能否用一个类来承接这个结果集呢？
+	// */
+	// // simpleTest();
+	// usingCommonQuery();
+	// usingwithAggregationOperation();
+	// }
 
 	/**
 	 * 聚合运算获得结果集，其结果是单行多列
 	 */
-	private static void usingwithAggregationOperation() {
+	public static void usingwithAggregationOperation() {
 		// 编写查询条件
 		String[] condition = { "province=1" };
 		Object[] cities = withAggregationOperation(City.class, condition, true, "count(*),sum(cityID)");
@@ -51,7 +51,7 @@ public class CacheTest {
 	/**
 	 * 聚合运算获得结果集，其结果是单行多列
 	 */
-	private static void usingCommonQuery() {
+	public static void usingCommonQuery() {
 		// 编写查询条件
 		String[] condition = { "cityID=1", "province=1" };
 		List<Object> cities = commonManyQuery(City.class, condition, false, "cityName");
@@ -63,7 +63,7 @@ public class CacheTest {
 	/**
 	 * query缓冲查询
 	 */
-	private static void queryCache() {
+	public static void queryCache() {
 		Session session1 = Base.autoSession();
 		Query query = session1.createQuery("from City where province=:province");
 		query.setInteger("province", 1);
@@ -77,7 +77,7 @@ public class CacheTest {
 	/**
 	 * 二级缓存
 	 */
-	private static void sessionFactoryCache() {
+	public static void sessionFactoryCache() {
 		String hql = "";
 		Session session = Base.getOpenSession();
 		Transaction tx = session.beginTransaction();
@@ -97,7 +97,7 @@ public class CacheTest {
 	/**
 	 * 一级缓存
 	 */
-	private static void sessionCache() {
+	public static void sessionCache() {
 
 	}
 
