@@ -8,6 +8,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import javassist.expr.NewArray;
+
 /**
  * 敏捷开发测试
  * 
@@ -42,26 +44,39 @@ public class AgileDevelopment {
 		// 使用buffered读取和写文件
 		BufferedReader reader = new BufferedReader(new FileReader(modelFile));
 		BufferedWriter writer = new BufferedWriter(new FileWriter(createdFile));
+		String[] oldAttrs = null;
+		String[] types = null;
+		String[] newAttrs = null;
 		if (attributes.length > 0) {
-			String[] oldAttrs = attributes;
-			String[] types = new String[attributes.length];
-			types=attributes;
+			oldAttrs = new String[attributes.length];
+			types = new String[attributes.length];
+			newAttrs = new String[attributes.length];
+			for (int i = 0; i < types.length; i++) {
+				oldAttrs[i] = attributes[i];
+				types[i] = attributes[i];
+			}
 			// 截取属性的类型
 			for (int i = 0; i < types.length; i++) {
 				types[i] = types[i].split("/")[1];
 			}
-			for (int i = 0; i < types.length; i++) {
-				System.out.println("--------" + types[i]);
-			}
-			String[] newAttrs = new String[attributes.length];
 			for (int i = 0; i < newAttrs.length; i++) {
-				newAttrs[i] = oldAttrs[i].replaceFirst(oldAttrs[i].substring(0,
-						1), oldAttrs[i].substring(0, 1).toUpperCase());
+				newAttrs[i] = oldAttrs[i].replaceFirst(
+						oldAttrs[i].substring(0, 1),
+						oldAttrs[i].substring(0, 1).toUpperCase()).split("/")[0];
 				System.out.println(newAttrs[i]);
 			}
 		}
+		int i = 0;
 		while (reader.ready()) {
-			writer.write(reader.readLine());
+			String buffer = reader.readLine();
+			if (newAttrs.length > 0) {
+				if (types.length > 0) {
+					buffer.replace("_Type", types[i]);
+				}
+				buffer.replace("_Attr", newAttrs[i]);
+			}
+			buffer.replace("_Agile", fileName);
+			writer.write(buffer);
 			writer.newLine();
 		}
 		writer.flush();
