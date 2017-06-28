@@ -1,0 +1,21 @@
+package entity;
+
+public class Agile {
+	private Type _TypeAttr;
+
+	public Agile() {
+	}
+
+	public Agile(Type _TypeAttr) {
+		this._TypeAttr = _TypeAttr;
+	}
+
+	public Type get_TypeAttr() {
+		return _TypeAttr;
+	}
+
+	public void set_TypeAttr(Type _TypeAttr) {
+		this._TypeAttr = _TypeAttr;
+	}
+
+}

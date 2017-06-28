@@ -20,19 +20,22 @@ public class CacheTest {
 	/**
 	 * @param args
 	 */
-	// public static void main(String[] args) {
-	// // sessionCache();
-	// // sessionFactoryCache();
-	// // queryCache();
-	//
-	// /*
-	// * hibernate不能像JDBC那样子获得查询结果集吗？如果查询的结果是返回多行多列该怎么处理呢？
-	// * list返回的是单列多行结果集，uniqueResult返回多列单行结果集，怎么将二者结合起来用呢？ 能否用一个类来承接这个结果集呢？
-	// */
-	// // simpleTest();
-	// usingCommonQuery();
-	// usingwithAggregationOperation();
-	// }
+	 public static void main(String[] args) {
+	 // sessionCache();
+	 // sessionFactoryCache();
+	 // queryCache();
+	
+	 /*
+	 * hibernate不能像JDBC那样子获得查询结果集吗？如果查询的结果是返回多行多列该怎么处理呢？
+	 * list返回的是单列多行结果集，uniqueResult返回多列单行结果集，怎么将二者结合起来用呢？ 能否用一个类来承接这个结果集呢？
+	 */
+	 // simpleTest();
+//	 usingCommonQuery();
+//	 usingwithAggregationOperation();
+		 String str="rsd";
+		 System.out.println(str.substring(0,1));
+		 System.out.println(str.replace(str.substring(0,1),str.substring(0,1).toUpperCase()));
+	 }
 
 	/**
 	 * 聚合运算获得结果集，其结果是单行多列
