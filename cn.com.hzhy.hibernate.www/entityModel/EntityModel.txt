@@ -1,20 +1,20 @@
 package entity;
 
 public class _Agile {
-	private Type _Attr;
+	private _Type _Attr;
 
-	public Agile() {
+	public _Agile() {
 	}
 
-	public Agile(Type _Attr) {
+	public _Agile(_Type _Attr) {
 		this._Attr = _Attr;
 	}
 
-	public Type get_Attr() {
+	public _Type get_Attr() {
 		return _Attr;
 	}
 
-	public void set_Attr(Type _Attr) {
+	public void set_Attr(_Type _Attr) {
 		this._Attr = _Attr;
 	}
 

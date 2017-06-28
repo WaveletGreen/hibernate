@@ -66,16 +66,18 @@ public class AgileDevelopment {
 				System.out.println(newAttrs[i]);
 			}
 		}
-		int i = 0;
 		while (reader.ready()) {
 			String buffer = reader.readLine();
 			if (newAttrs.length > 0) {
-				if (types.length > 0) {
-					buffer.replace("_Type", types[i]);
+				for (int j = 0; j < newAttrs.length; j++) {
+					if (types.length > 0) {
+						buffer = buffer.replace("_Type", types[j]);
+					}
+					buffer = buffer.replace("_Attr", newAttrs[j]);
 				}
-				buffer.replace("_Attr", newAttrs[i]);
+
 			}
-			buffer.replace("_Agile", fileName);
+			buffer = buffer.replace("_Agile", fileName);
 			writer.write(buffer);
 			writer.newLine();
 		}
